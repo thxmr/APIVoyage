@@ -21,7 +21,10 @@ La liste doit être définie dans un format compatible avec le format d'entrée.
 
 Dans cette API, il y a une classe qui forme la Carte d'embarquement, et une classe qui forme le voyage en lui même.
 
-###CarteEmbarquement
+Pour implémenter la solution, vous devez :
+- Créer une carte d'embarquement
+- Créer une liste de carte d'embarquement
+- L'associer a une liste de carte d'embarquement
 
 #ENGLISH :
 ##This API has been created by Thomas Roy in order to answer a problem that is listed below :
@@ -42,3 +45,10 @@ this list:
 "You have arrived at your final destination."
 
 The list must be defined in a format compatible with the input format.
+
+In this API, there is a class shaping the boarding pass, and a class shaping the trip.
+
+To implement this solution, you have to :
+- Create a boarding pass
+- Create a list of boarding pass
+- Add it to a list of boarding pass
