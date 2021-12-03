@@ -1,6 +1,6 @@
 # API de tri pour Carte d'embarquement
 ***
-##Problème :   
+## Problème :   
 \
 On vous remet une pile de cartes d'embarquement pour différents transports qui vous mèneront d'un point A à un point B en passant par plusieurs arrêts
  en cours de route. Toutes les cartes d'embarquement sont en désordre et vous ne savez pas où commence et où finit votre voyage. Chaque carte d'embarquement
@@ -19,9 +19,9 @@ cette liste :
 
 La liste doit être définie dans un format compatible avec le format d'entrée.   
 
-#Concepts
+# Concepts
 ***
-###Cette API dispose de :
+### Cette API dispose de :
 
 - Une classe abstraite CarteEmbarquement implémentant l'interface ICarteEmbarquement qui possède tous les attributs communs aux deux types de cartes d'embarquement, ainsi que les accesseurs et mutateurs pour chacun d'entre eux.
 - Une classe CarteEmbarquementAvion qui possède des attributs propres a une carte d'embarquement d'avion comme la porte d'embarquement ou le guichet de dépot des bagages, ainsi que les accesseurs et mutateurs pour chacun d'entre eux.
@@ -32,7 +32,7 @@ La liste doit être définie dans un format compatible avec le format d'entrée.
 - Une classe TestCarteEmbarquementTrain pour tester la construction de cette carte d'embarquement.
 - Une classe TestVoyage pour tester la création d'une liste de cartes d'embarquement, la création d'un voyage ainsi que le tri des cartes d'embarquement associé à celui-ci.
 
-#Environnement nécessaire
+# Environnement nécessaire
 ***
 Afin de pouvoir utiliser cette API comme bon vous semble vous devez :
 - Installer JAVA (ici, la version du SDK importe peu))
@@ -42,7 +42,7 @@ Voici la marche a suivre afin d'utiliser cette API :
 - Ouvez le dossier API comme un "Nouveau projet" dans votre IDE
 - Si cela est nécessaire, configurez votre "Run" afin de pouvoir lancer l'API
 
-#Fonctions et procédures 
+# Fonctions et procédures 
 ***
 (ici, les accesseurs et les mutateurs ne seront pas détaillés)\
 Voyage :
@@ -57,6 +57,6 @@ CarteEmbarquementAvion :
 CarteEmbarquementTrain :
 - getInfos():String -> Retourne une chaine de caractère contenant la concaténation des différentes informations de la carte d'embarquement. Dans le cas où le numeroSiege n'est pas renseigné, la chaine de caractère concaténé sera différente.
 
-#Credits
+# Credits
 ***
 L'API a été réalisé en intégralité par thxmr, dont voici le GitHub : https://github.com/thxmr
