@@ -1,6 +1,6 @@
 # API de tri pour Carte d'embarquement
 ***
-##Cette API a été crée par Thomas Roy dans le but de répondre à un problème que voici ci-dessous :   
+##Problème :   
 \
 On vous remet une pile de cartes d'embarquement pour différents transports qui vous mèneront d'un point A à un point B en passant par plusieurs arrêts
  en cours de route. Toutes les cartes d'embarquement sont en désordre et vous ne savez pas où commence et où finit votre voyage. Chaque carte d'embarquement
@@ -19,36 +19,44 @@ cette liste :
 
 La liste doit être définie dans un format compatible avec le format d'entrée.   
 
-Dans cette API, il y a une classe qui forme la Carte d'embarquement, et une classe qui forme le voyage en lui même.
+#Concepts
+***
+###Cette API dispose de :
 
-Pour implémenter la solution, vous devez :
-- Créer une carte d'embarquement
-- Créer une liste de carte d'embarquement
-- L'associer a une liste de carte d'embarquement
+- Une classe abstraite CarteEmbarquement implémentant l'interface ICarteEmbarquement qui possède tous les attributs communs aux deux types de cartes d'embarquement, ainsi que les accesseurs et mutateurs pour chacun d'entre eux.
+- Une classe CarteEmbarquementAvion qui possède des attributs propres a une carte d'embarquement d'avion comme la porte d'embarquement ou le guichet de dépot des bagages, ainsi que les accesseurs et mutateurs pour chacun d'entre eux.
+- Une classe CarteEmbarquementTrain ne possèdant pas d'attributs complémentaires à la classe CarteEmbarquement. Elle a été créé pour marquer la différence du moyen de transport.
+- Une interface ICarteEmbarquement qui va permettre l'appel d'une seule et même fonction getInfos() afin de pouvoir récupérer les informations liés a la carte d'embarquement, et ce quelque soit son type.
+- Une classe Voyage composée d'une liste non triée de carte d'embarquement, et une liste (vide à l'initialisation) de carte d'embarquement "triée" . Cette classe va trier les cartes d'embarquement afin de générer un parcours pour l'utilisateur qui sera enregistré dans la liste "listeTriee".
+- Une classe TestCarteEmbarquementAvion pour tester la construction de cette carte d'embarquement.
+- Une classe TestCarteEmbarquementTrain pour tester la construction de cette carte d'embarquement.
+- Une classe TestVoyage pour tester la création d'une liste de cartes d'embarquement, la création d'un voyage ainsi que le tri des cartes d'embarquement associé à celui-ci.
 
-#ENGLISH :
-##This API has been created by Thomas Roy in order to answer a problem that is listed below :
-\
-You will be given a stack of boarding passes for different transports that will take you from point A to point B through several stops
-along the way. All the boarding passes are in disarray and you don't know where your journey begins and ends. Each boarding pass
-contains seat assignment and transportation information (flight number, bus number, etc.).
+#Environnement nécessaire
+***
+Afin de pouvoir utiliser cette API comme bon vous semble vous devez :
+- Installer JAVA (ici, la version du SDK importe peu))
+- Disposer d'un IDE avec un compilateur JAVA. Vous pouvez trouver ici un IDE gratuit qui possède les prérequis pour faire fonctionner cette API : https://www.eclipse.org/downloads/
 
-Write an API that allows you to sort this type of list and return a description of how to end your trip.
+Voici la marche a suivre afin d'utiliser cette API :
+- Ouvez le dossier API comme un "Nouveau projet" dans votre IDE
+- Si cela est nécessaire, configurez votre "Run" afin de pouvoir lancer l'API
 
-For example, the API should be able to take an unordered set of boarding passes, provided in a format defined by you, and produce
-this list:
+#Fonctions et procédures 
+***
+(ici, les accesseurs et les mutateurs ne seront pas détaillés)\
+Voyage :
+- getTripDeparture():void -> parcours la liste non triée et, si elle existe, affecte la carte d'embarquement possédant une ville de départ différente de toutes les villes d'arrivés dans la listeTriée. C'est donc la première carte d'embarquement du voyage.
+- setNextCard():void -> parcours la liste non triée et compare la ville d'arrivée de la derniere carte renseignée dans "listeTriee" avec la ville de départ de chaque carte d'embarquement contenu dans listeCarteNonTrie. Une fois trouvée, elle est enregistré dans la liste listeTrie et retirée de la listeCarteNonTrie.
+- setTravel():void -> appelle la méthode getTripDeparture(), et tant que la listeCarteNonTrie n'est pas vide(donc tant qu'il reste des cartes à trier) va appeler la méthode setNextCard() afin de trouver la prochaine carte d'embarquement qui correspond.
+- descriptionTravel():String -> Retourne une chaine de caractère contenant la concaténation des données du voyage, récupérés par la fonction getInfos() et ce pour chaque carte contenue dans la listeTriee.
 
-"Take train 78A from Madrid to Barcelona. Sit in seat 45B."\
-"Take the bus from Barcelona airport to Girona airport. No seat assignments."\
-"From Girona Airport, take flight SK455 to Stockholm. Gate 45B, seat 3A. Drop off your luggage at counter 344."\
-"From Stockholm, take flight SK22 to New York JFK. Gate 22, seat 7B. Luggage will be automatically transferred from your last stop."\
-"You have arrived at your final destination."
+CarteEmbarquementAvion :
+- getInfos():String -> Retourne une chaine de caractère contenant la concaténation des différentes informations de la carte d'embarquement. Dans les cas où le guichetBagages et/ou le numeroSiege n'est pas renseigné, la chaine de caractère concaténé sera différente.
 
-The list must be defined in a format compatible with the input format.
+CarteEmbarquementTrain :
+- getInfos():String -> Retourne une chaine de caractère contenant la concaténation des différentes informations de la carte d'embarquement. Dans le cas où le numeroSiege n'est pas renseigné, la chaine de caractère concaténé sera différente.
 
-In this API, there is a class shaping the boarding pass, and a class shaping the trip.
-
-To implement this solution, you have to :
-- Create a boarding pass
-- Create a list of boarding pass
-- Add it to a list of boarding pass
+#Credits
+***
+L'API a été réalisé en intégralité par thxmr, dont voici le GitHub : https://github.com/thxmr
